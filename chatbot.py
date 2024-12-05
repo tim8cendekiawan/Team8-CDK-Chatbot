@@ -3,13 +3,6 @@ import streamlit as st
 import base64
 
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode("utf-8")
-
-
-image_base64 = get_base64_image("logo.png")  # Pastikan path ke logo.png benar
-
 def Chatbot():
     st.markdown(
         """
@@ -31,12 +24,9 @@ def Chatbot():
             align-items: center; /* Menyelaraskan vertikal gambar dan teks */
             gap: 10px; /* Jarak antara teks dan gambar */
         }
-        .welcome-div img {
-            width: 100px; /* Ukuran gambar */
-            height: 100px; /* Ukuran gambar */
-        }
-        .welcome-div p {
-            font-weight: bold; /* Membuat teks dalam <p> menjadi bold */
+         .welcome-div p {
+            font-family: 'Verdana', sans-serif;
+            color: #555;
         }
         </style>
         """,
@@ -47,10 +37,10 @@ def Chatbot():
     st.markdown(
         f"""
         <div class="welcome-div">
-            <h2> Welcome To PlantBot
-            </h2>
-            <img src="data:image/png;base64,{image_base64}"
+        <h2>Selamat Datang di PlantBot👋</h2>
+            <p>Halo PlantBot siap membantu Anda merawat dan konsultasi tanaman. Apa yang bisa saya bantu hari ini?...</p>
         </div>
+
         """,
         unsafe_allow_html=True,
     )
