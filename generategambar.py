@@ -46,7 +46,6 @@ def GenerateGambar():
                     "model": "black-forest-labs/FLUX.1-schnell-Free",
                     "prompt": f"Ilustrasikan dengan detail gambar dari {english_description}, termasuk warna, bentuk, dan ukuran yang spesifik. Jika deskripsi tidak menggambarkan tanaman, tampilkan gambar hitam sebagai alternatif.",
                     "max_tokens": 256,
-                    "num_images": 1,
                     "width": 1024,
                     "height": 1024
                 }
@@ -72,22 +71,7 @@ def GenerateGambar():
                                 img_response = requests.get(img_url)
                                 img = Image.open(io.BytesIO(img_response.content))
                                 
-                                st.image(
-                                    img, 
-                                    caption=f'Gambar Tanaman #{idx}', 
-                                )
-                                
-                                buffered = io.BytesIO()
-                                img.save(buffered, format="PNG")
-                                img_str = base64.b64encode(buffered.getvalue()).decode()
-                                st.download_button(
-                                    label=f"Download Gambar #{idx}",
-                                    data=base64.b64decode(img_str),
-                                    file_name=f"tanaman_{idx}.png",
-                                    mime="image/png",
-                                    help="Klik untuk mengunduh gambar",
-                                    type="primary"
-                                )
+                                st.image(img)
                             else:
                                 st.warning(f"Tidak ada URL gambar untuk gambar #{idx}")
                         
